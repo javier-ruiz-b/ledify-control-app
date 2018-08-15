@@ -5,8 +5,7 @@ import okhttp3.*
 import java.io.IOException
 import java.util.*
 
-class RestClient(val baseUrl: String = "http://treso.info:8033") {
-
+class RestClient(val baseUrl: String = "http://192.168.178.50:8033") {
     val client = OkHttpClient()
     val commandQueue = PriorityQueue<String>()
     var onRequest = false
@@ -47,8 +46,6 @@ class RestClient(val baseUrl: String = "http://treso.info:8033") {
     }
 
     fun setColor(red: String, green:String, blue: String, white: String) {
-        getRequest("COLOR=0,$red,$green,$blue,$white")
-        getRequest("FADETO=1,0,2,0,1000")
-        getRequest("SET=1")
+        getRequest("COLOR=0,$red,$green,$blue,$white+FADETO=1,0,2,0,500+SET=1")
     }
 }
