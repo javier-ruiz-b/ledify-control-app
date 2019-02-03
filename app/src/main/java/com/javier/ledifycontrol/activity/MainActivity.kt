@@ -1,10 +1,13 @@
-package com.javier.ledifycontrol
+package com.javier.ledifycontrol.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.widget.SeekBar
+import com.javier.ledifycontrol.R
+import com.javier.ledifycontrol.model.RgbwColor
+import com.javier.ledifycontrol.net.RestClient
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -53,12 +56,8 @@ class MainActivity : AppCompatActivity() {
 
     private val mSendColorHandler = Handler()
     private val mSendColorRunnable = Runnable {
-        mRestClient.setColor(
-                tvRed.text.toString(),
-                tvGreen.text.toString(),
-                tvBlue.text.toString(),
-                tvWhite.text.toString()
-        ) }
+        mRestClient.setColor(color())
+    }
 
     private fun sendColor() {
         if (mLoaded and !mSendColorHandler.hasMessages(1)) {
@@ -67,20 +66,19 @@ class MainActivity : AppCompatActivity() {
             mSendColorHandler.sendMessageDelayed(message, 100)
         }
     }
+    private fun color(): RgbwColor {
+        return RgbwColor.fromColorAndBrightness(colorPickerView.color,
+                sbWhite.progress,
+                sbBrightness.progress)
+    }
 
-    fun updateColor() {
-        val color = colorPickerView.color
-        val brightness = sbBrightness.progress
-        val red = ((color shr 16) and 0xFF) * brightness / 255
-        val green = ((color shr 8) and 0xFF) * brightness / 255
-        val blue = (color and 0xFF) * brightness / 255
-        val white = sbWhite.progress * brightness / 255
+    private fun updateColor() {
+        val color = color()
 
-
-        tvRed.text = red.toString()
-        tvGreen.text = green.toString()
-        tvBlue.text = blue.toString()
-        tvWhite.text = white.toString()
+        tvRed.text = color.red.toString()
+        tvGreen.text = color.green.toString()
+        tvBlue.text = color.blue.toString()
+        tvWhite.text = color.white.toString()
 
         sendColor()
     }
