@@ -2,7 +2,7 @@ package com.javier.ledifycontrol.layers
 
 import com.javier.ledifycontrol.model.LedifyInterpolator
 
-class FadeToLayer(private val layer: BaseLayer, val durationMs: Int, val interpolator : LedifyInterpolator)
+class FadeToLayer(val layer: BaseLayer, val durationMs: Int, val interpolator : LedifyInterpolator)
     : BaseLayer() {
 
     var startMs = 0

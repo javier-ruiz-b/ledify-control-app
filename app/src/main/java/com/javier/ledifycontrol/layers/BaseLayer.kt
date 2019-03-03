@@ -1,9 +1,13 @@
 package com.javier.ledifycontrol.layers
 
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import mu.KotlinLogging
 import java.lang.Exception
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY)
 open class BaseLayer {
+    @JsonProperty("@class") val type = javaClass.canonicalName
 
     val myIndex = availableIndex()
 
@@ -11,7 +15,7 @@ open class BaseLayer {
         throw Exception("BaseLayer has no implementation")
     }
 
-    public fun setLayerString() : String {
+    fun setLayerString() : String {
             return "${toString()}+SET=${myIndex}"
     }
 
@@ -26,7 +30,7 @@ open class BaseLayer {
             indices.add(value)
             return value
         }
-        public fun freeIndex(index:Int) {
+        fun freeIndex(index:Int) {
             if (!indices.remove(index)) {
                 logger.warn { "Index $index not found!" }
             }
