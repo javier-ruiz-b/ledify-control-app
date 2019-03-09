@@ -6,8 +6,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.LinearLayout
 import com.javier.ledifycontrol.R
+import com.javier.ledifycontrol.layers.Layer
+import com.javier.ledifycontrol.layers.ColorLayer
+import com.javier.ledifycontrol.layers.FadeToLayer
+import com.javier.ledifycontrol.model.LedifyInterpolator
+import com.javier.ledifycontrol.model.RgbwColor
+import kotlinx.android.synthetic.main.item_layer.view.*
 
 class LayersActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -18,52 +24,46 @@ class LayersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layers)
 
+        var layers = ArrayList<Layer>()
+        layers.add(ColorLayer(RgbwColor(255, 150, 50, 0)))
+        layers.add(ColorLayer(RgbwColor(5, 15, 100, 1)))
+        layers.add(FadeToLayer(layers[0], 1, LedifyInterpolator.Accelerate))
+
         viewManager = LinearLayoutManager(this)
-        viewAdapter = LayerAdapter(arrayOf("A", "B", "C"))
+        viewAdapter = LayerAdapter(layers)
 
         recyclerView = findViewById<RecyclerView>(R.id.rv).apply {
-            // use this setting to improve performance if you know that changes
-            // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
-
-            // use a linear layout manager
             layoutManager = viewManager
-
-            // specify an viewAdapter (see also next example)
             adapter = viewAdapter
 
         }
     }
 
-    class LayerAdapter(private val myDataset: Array<String>) :
+    class LayerAdapter(private val layers: ArrayList<Layer>) :
             RecyclerView.Adapter<LayerAdapter.MyViewHolder>() {
 
-        // Provide a reference to the views for each data item
-        // Complex data items may need more than one view per item, and
-        // you provide access to all the views for a data item in a view holder.
-        // Each data item is just a string in this case that is shown in a TextView.
-        class MyViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
+        class MyViewHolder(view: LinearLayout) : RecyclerView.ViewHolder(view) {
+            val ivIcon = view.ivIcon!!
+            val tvName = view.tvName!!
+        }
 
-
-        // Create new views (invoked by the layout manager)
         override fun onCreateViewHolder(parent: ViewGroup,
                                         viewType: Int): LayerAdapter.MyViewHolder {
-            // create a new view
-            val textView = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_layer, parent, false) as TextView
-            // set the view's size, margins, paddings and layout parameters
-            return MyViewHolder(textView)
+            val ll = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_layer, parent, false) as LinearLayout
+
+            return MyViewHolder(ll)
         }
 
-        // Replace the contents of a view (invoked by the layout manager)
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            // - get element from your dataset at this position
-            // - replace the contents of the view with that element
-            holder.textView.text = myDataset[position]
+            val item = layers[position]
+            holder.tvName.text = item.toString().replace('+', '\n')
+            holder.ivIcon.setImageResource(item.getIcon())
+            holder.ivIcon.setColorFilter(item.getTint())
         }
 
-        // Return the size of your dataset (invoked by the layout manager)
-        override fun getItemCount() = myDataset.size
+        override fun getItemCount() = layers.size
     }
 
 }

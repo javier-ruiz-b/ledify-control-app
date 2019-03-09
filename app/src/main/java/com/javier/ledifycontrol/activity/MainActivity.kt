@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Message
 import android.widget.SeekBar
 import com.javier.ledifycontrol.R
-import com.javier.ledifycontrol.layers.LayerBuilder
+import com.javier.ledifycontrol.layers.LayersCoordinator
 import com.javier.ledifycontrol.model.RgbwColor
 import com.javier.ledifycontrol.net.RestClient
 import kotlinx.android.synthetic.main.activity_main.*
@@ -53,10 +53,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         mSendColorHandler.postDelayed({ mLoaded = true}, 250)
-
-        val layerBuilder = LayerBuilder(filesDir.toString())
-//        layerBuilder.save()
-//        layerBuilder.load()
     }
 
     private val mSendColorHandler = Handler()
