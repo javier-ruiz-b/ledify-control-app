@@ -1,7 +1,7 @@
-package com.javier.ledifycontrol.layers
+package com.javier.ledifycontrol.code.layer
 
 import com.javier.ledifycontrol.R
-import com.javier.ledifycontrol.model.RgbwColor
+import com.javier.ledifycontrol.code.model.RgbwColor
 
 
 class ColorLayer(val color: RgbwColor)

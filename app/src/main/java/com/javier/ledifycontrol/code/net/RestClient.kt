@@ -1,9 +1,9 @@
-package com.javier.ledifycontrol.net
+package com.javier.ledifycontrol.code.net
 
-import com.javier.ledifycontrol.layers.ColorLayer
-import com.javier.ledifycontrol.layers.FadeToLayer
-import com.javier.ledifycontrol.model.LedifyInterpolator
-import com.javier.ledifycontrol.model.RgbwColor
+import com.javier.ledifycontrol.code.layer.ColorLayer
+import com.javier.ledifycontrol.code.layer.FadeToLayer
+import com.javier.ledifycontrol.code.model.LedifyInterpolator
+import com.javier.ledifycontrol.code.model.RgbwColor
 import mu.KotlinLogging
 import okhttp3.*
 import java.io.IOException
@@ -53,7 +53,7 @@ class RestClient(val baseUrl: String = "http://192.168.178.50:8033") {
     }
 
     fun setColor(color: RgbwColor) {
-        val layer = FadeToLayer(ColorLayer(color), 500, LedifyInterpolator.Decelerate4x)
+        val layer = FadeToLayer(ColorLayer(color), LedifyInterpolator.Decelerate4x, 0, 500)
         getRequest(layer.setLayerString())
     }
 }

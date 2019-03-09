@@ -1,4 +1,4 @@
-package com.javier.ledifycontrol.model
+package com.javier.ledifycontrol.code.model
 
 class RgbwColor(val red: Int, val green: Int, val blue: Int, val white: Int) {
     override fun toString(): String {

@@ -1,23 +1,21 @@
-package com.javier.ledifycontrol.layers
+package com.javier.ledifycontrol.code.layer
 
 import com.javier.ledifycontrol.R
-import com.javier.ledifycontrol.model.LedifyInterpolator
+import com.javier.ledifycontrol.code.model.LedifyInterpolator
 
-class FadeToLayer(val layer: Layer, val durationMs: Int, val interpolator : LedifyInterpolator)
+class FadeToLayer(val layer: Layer, val interpolator : LedifyInterpolator, val startMs: Int, val durationMs: Int)
     : Layer() {
-
-    var startMs = 0
 
     override fun toString() : String {
         val interpolatorInt = interpolator.value
         val previousCommand = layer.toString()
         val layerIndex = layer.myIndex
-        Layer.freeIndex(layerIndex)
+        freeIndex(layerIndex)
         return "$previousCommand+FADETO=$myIndex,$layerIndex,$interpolatorInt,$startMs,$durationMs"
     }
 
     override fun getIcon() : Int {
-        return R.drawable.ic_keyboard_arrow_right_48dp
+        return R.drawable.ic_blur_linear_48dp
     }
 
     override fun getTint() : Int {

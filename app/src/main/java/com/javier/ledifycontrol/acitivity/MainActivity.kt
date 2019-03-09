@@ -1,14 +1,18 @@
-package com.javier.ledifycontrol.activity
+package com.javier.ledifycontrol.acitivity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.widget.Button
 import android.widget.SeekBar
 import com.javier.ledifycontrol.R
-import com.javier.ledifycontrol.layers.LayersCoordinator
-import com.javier.ledifycontrol.model.RgbwColor
-import com.javier.ledifycontrol.net.RestClient
+import com.javier.ledifycontrol.code.action.ActionEditor
+import com.javier.ledifycontrol.code.action.AvailableActions
+import com.javier.ledifycontrol.code.action.DefaultActions
+import com.javier.ledifycontrol.code.model.RgbwColor
+import com.javier.ledifycontrol.code.net.RestClient
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        DefaultActions.createIfNotExist(filesDir)
 
         colorPickerView.setColorListener {
             updateColor()
@@ -42,17 +48,27 @@ class MainActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
-        buttonOn.setOnClickListener {
-            mRestClient.getRequest("ON")
-        }
-        buttonOff.setOnClickListener {
-            mRestClient.getRequest("OFF")
-        }
+        configureButton(buttonOn, AvailableActions.On)
+        configureButton(buttonOff, AvailableActions.Off)
         buttonRandom.setOnClickListener {
             mRestClient.getRequest("RANDOM")
         }
 
         mSendColorHandler.postDelayed({ mLoaded = true}, 250)
+    }
+
+    fun configureButton(button: Button, action: AvailableActions) {
+        button.setOnClickListener {
+            //            mRestClient.getRequest("OFF")
+            val command = ActionEditor(filesDir, action.fileName).command
+            mRestClient.getRequest(command)
+        }
+        button.setOnLongClickListener {
+            val intent = Intent(this, ActionEditorActivity::class.java)
+                    .putExtra("actionName", action.fileName)
+            startActivity(intent)
+            true
+        }
     }
 
     private val mSendColorHandler = Handler()

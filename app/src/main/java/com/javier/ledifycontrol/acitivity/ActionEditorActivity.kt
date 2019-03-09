@@ -1,4 +1,4 @@
-package com.javier.ledifycontrol.activity
+package com.javier.ledifycontrol.acitivity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,39 +8,33 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.javier.ledifycontrol.R
-import com.javier.ledifycontrol.layers.Layer
-import com.javier.ledifycontrol.layers.ColorLayer
-import com.javier.ledifycontrol.layers.FadeToLayer
-import com.javier.ledifycontrol.model.LedifyInterpolator
-import com.javier.ledifycontrol.model.RgbwColor
+import com.javier.ledifycontrol.code.action.ActionEditor
+import com.javier.ledifycontrol.code.layer.Layer
 import kotlinx.android.synthetic.main.item_layer.view.*
 
-class LayersActivity : AppCompatActivity() {
+class ActionEditorActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layers)
+        setContentView(R.layout.activity_action_editor)
 
-        var layers = ArrayList<Layer>()
-        layers.add(ColorLayer(RgbwColor(255, 150, 50, 0)))
-        layers.add(ColorLayer(RgbwColor(5, 15, 100, 1)))
-        layers.add(FadeToLayer(layers[0], 1, LedifyInterpolator.Accelerate))
+        val actionName = intent.getStringExtra("actionName")
+        val actionEditor = ActionEditor(filesDir, actionName)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = LayerAdapter(layers)
+        viewAdapter = LayerAdapter(actionEditor.layers())
 
         recyclerView = findViewById<RecyclerView>(R.id.rv).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
-
         }
     }
 
-    class LayerAdapter(private val layers: ArrayList<Layer>) :
+    class LayerAdapter(private val layers: List<Layer>) :
             RecyclerView.Adapter<LayerAdapter.MyViewHolder>() {
 
         class MyViewHolder(view: LinearLayout) : RecyclerView.ViewHolder(view) {

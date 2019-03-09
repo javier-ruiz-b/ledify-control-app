@@ -1,28 +1,27 @@
 package com.javier.ledifycontrol
 
-import com.javier.ledifycontrol.layers.ColorLayer
-import com.javier.ledifycontrol.layers.FadeToLayer
-import com.javier.ledifycontrol.layers.LayersCoordinator
-import com.javier.ledifycontrol.model.LedifyInterpolator
-import com.javier.ledifycontrol.model.RgbwColor
+import com.javier.ledifycontrol.code.layer.ColorLayer
+import com.javier.ledifycontrol.code.layer.FadeToLayer
+import com.javier.ledifycontrol.code.action.ActionEditor
+import com.javier.ledifycontrol.code.model.LedifyInterpolator
+import com.javier.ledifycontrol.code.model.RgbwColor
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
-import java.io.File
 import org.junit.Rule
 
 
 
-class LayersCoordinatorTest {
-    private lateinit var tested: LayersCoordinator
+class ActionEditorTest {
+    private lateinit var tested: ActionEditor
 
     @get:Rule
     val temporaryFolder = TemporaryFolder()
 
     private fun load() {
-        tested = LayersCoordinator(temporaryFolder.root, "tested")
+        tested = ActionEditor(temporaryFolder.root, "tested")
     }
 
     @Before

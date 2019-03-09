@@ -1,4 +1,4 @@
-package com.javier.ledifycontrol.model
+package com.javier.ledifycontrol.code.model
 
 enum class LedifyInterpolator(val value: Int) {
     Linear(1),
