@@ -20,4 +20,17 @@
         android:textSize="16sp"
         android:text="LAYERNAME=0,1,2,3,4" />
 
+    <view
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+
+    <Button
+        android:id="@+id/buttonColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Color"/>
+
 </LinearLayout>

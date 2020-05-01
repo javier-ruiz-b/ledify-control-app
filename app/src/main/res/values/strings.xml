@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Ledify</string>
+    <string name="layer_addition">Addition</string>
+    <string name="layer_color">Color</string>
 </resources>

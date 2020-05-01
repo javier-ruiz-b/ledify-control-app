@@ -52,16 +52,36 @@ class ActionEditor(filesDir: File, name: String) {
         file.delete()
     }
 
+    fun file() : File {
+        return file
+    }
+
     fun save() {
         objectMapper.writeValue(file, action)
         logger.info { "Saved $action in $file" }
     }
 
+    fun copy(filesDir: File, name: String) : ActionEditor {
+        if (file().exists()) {
+            val newFile = filePath(filesDir, name)
+            file().copyTo(newFile, true)
+        }
+        return ActionEditor(filesDir, name)
+    }
+
     fun add(layer: Layer) {
         action.layers.add(layer)
     }
+
     fun add(layers: Collection<Layer>) {
         action.layers.addAll(layers)
     }
 
+    fun remove(index: Int) {
+        action.layers.removeAt(index)
+    }
+
+    fun remove(layer: Layer) {
+        action.layers.remove(layer)
+    }
 }

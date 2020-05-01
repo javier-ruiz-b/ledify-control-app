@@ -24,7 +24,12 @@ class RestClient(val baseUrl: String = "http://192.168.178.50:8033") {
         performRequest(command)
     }
 
-    fun performRequest(command: String)  {
+    fun setColor(color: RgbwColor) {
+        val layer = FadeToLayer(ColorLayer(color), LedifyInterpolator.Decelerate4x, 0, 500)
+        getRequest(layer.setLayerString())
+    }
+
+    private fun performRequest(command: String)  {
         val request = Request.Builder()
                 .url("$baseUrl/$command")
                 .build()
@@ -44,16 +49,12 @@ class RestClient(val baseUrl: String = "http://192.168.178.50:8033") {
         })
     }
 
-    fun nextFromQueue() {
+    private fun nextFromQueue() {
         if (commandQueue.isEmpty()) {
             onRequest = false
         } else {
-            performRequest(commandQueue.poll())
+            performRequest(commandQueue.poll()!!)
         }
     }
 
-    fun setColor(color: RgbwColor) {
-        val layer = FadeToLayer(ColorLayer(color), LedifyInterpolator.Decelerate4x, 0, 500)
-        getRequest(layer.setLayerString())
-    }
 }

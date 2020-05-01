@@ -1,6 +1,7 @@
 package com.javier.ledifycontrol.code.layer
 
 import com.javier.ledifycontrol.R
+import com.javier.ledifycontrol.code.model.RgbwColor
 
 class AdditionLayer(val layers: List<Layer>)
     : Layer() {
@@ -14,7 +15,9 @@ class AdditionLayer(val layers: List<Layer>)
             freeIndex(layerIndex)
             indices += "$layerIndex,"
         }
-        indices = indices.substring(0,indices.length - 2)
+        if (!indices.isEmpty()) {
+            indices = indices.substring(0, indices.length - 1)
+        }
         return "${layers}ADD=$myIndex,$indices"
     }
 
@@ -23,6 +26,9 @@ class AdditionLayer(val layers: List<Layer>)
     }
 
     override fun getTint() : Int {
+        if (layers.isEmpty()) {
+            return RgbwColor(255,255,255,255).toArgb()
+        }
         return layers.last().getTint()
     }
 }
