@@ -14,6 +14,10 @@ open class Layer {
 
     val myIndex = availableIndex()
 
+    fun id() : Int {
+        return type.hashCode()
+    }
+
     override fun toString() : String {
         throw Exception("Layer has no implementation")
     }

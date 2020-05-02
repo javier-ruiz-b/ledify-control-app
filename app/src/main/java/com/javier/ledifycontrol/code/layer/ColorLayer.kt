@@ -4,7 +4,7 @@ import com.javier.ledifycontrol.R
 import com.javier.ledifycontrol.code.model.RgbwColor
 
 
-class ColorLayer(val color: RgbwColor)
+class ColorLayer(var color: RgbwColor)
     : Layer() {
 
     override fun toString() : String {

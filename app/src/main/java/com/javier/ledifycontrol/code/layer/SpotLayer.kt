@@ -5,7 +5,7 @@ import com.javier.ledifycontrol.code.model.LedifyInterpolator
 import com.javier.ledifycontrol.code.model.RgbwColor
 
 
-class SpotLayer(val color: RgbwColor,
+class SpotLayer(var color: RgbwColor,
                 val position: Float,
                 val size: Float,
                 val interpolator: LedifyInterpolator)
