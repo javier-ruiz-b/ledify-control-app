@@ -28,11 +28,11 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <Button
-                android:id="@+id/buttonTest"
+            <CheckBox
+                android:id="@+id/cbLiveUpdate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Test" />
+                android:layout_height="match_parent"
+                android:text="Live Update"/>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

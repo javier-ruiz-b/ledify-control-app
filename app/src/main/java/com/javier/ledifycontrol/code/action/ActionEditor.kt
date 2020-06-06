@@ -42,7 +42,13 @@ class ActionEditor(filesDir: File, name: String) {
     }
 
     val command: String
-        get() {return layers().last().setLayerString()}
+        get() {
+            return if (layers().isEmpty()) {
+                ""
+            } else {
+                layers().last().setLayerString()
+            }
+        }
 
     var actionName: String
         get() { return action.name }

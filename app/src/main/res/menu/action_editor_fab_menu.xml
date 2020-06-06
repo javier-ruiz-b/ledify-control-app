@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_color_lens_white_24dp"
         android:title="@string/layer_color"/>
     <item
+        android:id="@+id/layer_color_spot"
+        android:icon="@drawable/ic_brightness_48dp"
+        android:title="@string/layer_spot" />
+    <item
         android:id="@+id/layer_addition"
         android:icon="@drawable/ic_add_circle_outline_white_24dp"
         android:title="@string/layer_addition" />

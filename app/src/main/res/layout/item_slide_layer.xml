@@ -31,28 +31,21 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/buttonColor"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Color" />
+            android:layout_margin="8dp"
+            android:text="Parent"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/etLayer"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:text="1" />
 
     </LinearLayout>
-    <net.cachapa.expandablelayout.ExpandableLayout
-        android:id="@+id/elColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:el_duration="300"
-        app:el_expanded="false"
-        app:el_parallax="0.5">
 
-        <com.javier.ledifycontrol.view.ColorPicker
-            android:id="@+id/colorPicker"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
-    </net.cachapa.expandablelayout.ExpandableLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,60 +59,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Position"
+            android:text="Speed"
             android:textSize="16sp" />
 
         <SeekBar
-            android:id="@+id/sbPosition"
+            android:id="@+id/sbSpeed"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:layout_weight="1"
             android:max="255"
-            android:progress="122"
+            android:progress="125"
             android:splitTrack="false"
             android:src="@color/colorAccent" />
 
         <TextView
-            android:id="@+id/tvPosition"
+            android:id="@+id/tvSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0.5" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Size"
-            android:textSize="16sp" />
-
-        <SeekBar
-            android:id="@+id/sbSize"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:max="255"
-            android:progress="20"
-            android:splitTrack="false"
-            android:src="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/tvSize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2" />
-
-    </LinearLayout>
 
 </LinearLayout>

@@ -6,8 +6,8 @@ import com.javier.ledifycontrol.code.model.RgbwColor
 
 
 class SpotLayer(var color: RgbwColor,
-                val position: Float,
-                val size: Float,
+                var position: Float,
+                var size: Float,
                 val interpolator: LedifyInterpolator)
     : Layer() {
 

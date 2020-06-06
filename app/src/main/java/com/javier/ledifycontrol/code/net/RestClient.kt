@@ -34,19 +34,20 @@ class RestClient(val baseUrl: String = "http://192.168.178.50:8033") {
                 .url("$baseUrl/$command")
                 .build()
         logger.info { "Sending: $command" }
-        client.newCall(request).enqueue(object: Callback {
-            override fun onFailure(call: Call?, e: IOException?) {
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
                 logger.error { e }
                 nextFromQueue()
             }
 
-            override fun onResponse(call: Call?, response: Response?) {
-                val responseStr = response?.body()?.string()
-                val requestStr = response?.request()?.url().toString()
+            override fun onResponse(call: Call, response: Response) {
+                val responseStr = response.body?.string()
+                val requestStr = response.request.url.toString()
                 logger.info { "Response: $responseStr Request: $requestStr" }
                 nextFromQueue()
             }
         })
+
     }
 
     private fun nextFromQueue() {

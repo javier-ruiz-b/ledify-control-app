@@ -1,6 +1,6 @@
 package com.javier.ledifycontrol.code.model
 
-class RgbwColor(val red: Int, val green: Int, val blue: Int, val white: Int) {
+class RgbwColor(var red: Int, var green: Int, var blue: Int, var white: Int) {
     override fun toString(): String {
         return "$red,$green,$blue,$white"
     }
@@ -11,6 +11,13 @@ class RgbwColor(val red: Int, val green: Int, val blue: Int, val white: Int) {
         val convGreen = (green * brightness) / 255
         val convBlue = (blue * brightness) / 255
         return (255 shl 24) or (red shl 16) or (green shl 8) or blue
+    }
+
+    fun set(color: RgbwColor) {
+        this.red = color.red
+        this.green = color.green
+        this.blue = color.blue
+        this.white = color.white
     }
 
     companion object{
