@@ -11,14 +11,14 @@ class AdditionLayer(val layers: List<Layer>)
         var indices = ""
         this.layers.forEach { layer ->
             layers += "$layer+"
-            val layerIndex = layer.myIndex
+            val layerIndex = layer.index
             freeIndex(layerIndex)
             indices += "$layerIndex,"
         }
         if (!indices.isEmpty()) {
             indices = indices.substring(0, indices.length - 1)
         }
-        return "${layers}ADD=$myIndex,$indices"
+        return "${layers}ADD=$index,$indices"
     }
 
     override fun getIcon() : Int {

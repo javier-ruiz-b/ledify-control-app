@@ -12,7 +12,7 @@ import java.lang.Exception
 open class Layer {
     @JsonProperty("@class") val type = javaClass.canonicalName
 
-    val myIndex = availableIndex()
+    val index = availableIndex()
 
     fun id() : Int {
         return type.hashCode()
@@ -33,7 +33,7 @@ open class Layer {
     }
 
     fun setLayerString() : String {
-            return "${toString()}+SET=$myIndex"
+        return "${toString()}+SET=$index"
     }
 
     companion object {
@@ -41,7 +41,7 @@ open class Layer {
         private val indices: MutableSet<Int> = mutableSetOf()
         fun availableIndex() : Int {
             var value = 1
-            if (!indices.isEmpty()) {
+            if (indices.isNotEmpty()) {
                 value = indices.last() + 1
             }
             indices.add(value)

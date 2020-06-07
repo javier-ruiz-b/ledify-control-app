@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".activity.ActionsActivity" />
-        <activity android:name=".activity.ActionEditorActivity"
+        <activity android:name=".activity.action_editor.ActionEditorActivity"
             android:label="Ledify Editor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

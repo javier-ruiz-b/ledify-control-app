@@ -7,12 +7,12 @@ import android.os.Handler
 import android.os.Message
 import android.widget.Button
 import com.javier.ledifycontrol.R
+import com.javier.ledifycontrol.activity.action_editor.ActionEditorActivity
 import com.javier.ledifycontrol.code.action.ActionEditor
 import com.javier.ledifycontrol.code.action.AvailableActions
 import com.javier.ledifycontrol.code.action.DefaultActions
 import com.javier.ledifycontrol.code.model.RgbwColor
 import com.javier.ledifycontrol.code.net.RestClient
-import com.javier.ledifycontrol.view.ColorPicker
 import com.javier.ledifycontrol.view.ColorPicker.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
             mRestClient.getRequest("ON")
         }
         configureButton(buttonOff, AvailableActions.Off)
+        buttonOff.setOnClickListener {
+            mRestClient.getRequest("OFF")
+        }
         buttonRandom.setOnClickListener {
             mRestClient.getRequest("RANDOM")
         }
@@ -42,14 +45,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        mSendColorHandler.postDelayed({ mLoaded = true}, 250)
+        mSendColorHandler.postDelayed({ mLoaded = true }, 250)
     }
 
     private fun configureButton(button: Button, action: AvailableActions) {
         button.setOnClickListener {
-            //            mRestClient.getRequest("OFF")
-            val command = ActionEditor(filesDir, action.fileName).command
-            mRestClient.getRequest(command)
+            mRestClient.getRequest(ActionEditor(filesDir, action.fileName).command)
         }
         button.setOnLongClickListener {
             val intent = Intent(this, ActionEditorActivity::class.java)

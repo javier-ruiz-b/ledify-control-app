@@ -8,11 +8,11 @@ class FadeLayer(val source: Layer, val destination: Layer,  val interpolator : L
 
     override fun toString() : String {
         val interpolatorInt = interpolator.value
-        val sourceIndex = source.myIndex
-        val destinationIndex = destination.myIndex
+        val sourceIndex = source.index
+        val destinationIndex = destination.index
         freeIndex(sourceIndex)
         freeIndex(destinationIndex)
-        return "$source+$destination+FADE=$myIndex,$sourceIndex,$destinationIndex,$interpolatorInt,$startMs,$durationMs"
+        return "$source+$destination+FADE=$index,$sourceIndex,$destinationIndex,$interpolatorInt,$startMs,$durationMs"
     }
 
     override fun getIcon() : Int {

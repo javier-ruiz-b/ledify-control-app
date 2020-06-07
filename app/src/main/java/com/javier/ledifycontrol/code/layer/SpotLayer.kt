@@ -13,7 +13,7 @@ class SpotLayer(var color: RgbwColor,
 
     override fun toString() : String {
         val rgbw = color.toString()
-        return "SPOT=$myIndex,$rgbw,$position,$size,${interpolator.value}"
+        return "SPOT=$index,$rgbw,$position,$size,${interpolator.value}"
     }
 
     override fun getIcon() : Int {

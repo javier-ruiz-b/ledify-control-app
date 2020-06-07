@@ -9,7 +9,7 @@ class ColorLayer(var color: RgbwColor)
 
     override fun toString() : String {
         val rgbw = color.toString()
-        return "COLOR=$myIndex,$rgbw"
+        return "COLOR=$index,$rgbw"
     }
 
     override fun getIcon() : Int {

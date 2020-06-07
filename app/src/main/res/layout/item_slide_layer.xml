@@ -20,25 +20,19 @@
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginRight="8dp"
             android:text="LAYERNAME=0,1,2,3,4"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <View
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Parent"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/etLayer"
+        <Spinner
+            android:id="@+id/spParent"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
@@ -67,8 +61,8 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:max="255"
-            android:progress="125"
+            android:max="1000"
+            android:progress="525"
             android:splitTrack="false"
             android:src="@color/colorAccent" />
 
@@ -76,7 +70,7 @@
             android:id="@+id/tvSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0.5" />
+            android:text="1" />
 
     </LinearLayout>
 

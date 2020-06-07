@@ -3,4 +3,6 @@
     <string name="layer_addition">Addition</string>
     <string name="layer_color">Color</string>
     <string name="layer_spot">Spot</string>
+    <string name="layer_slide">Slide</string>
+    <string name="layer_fade">Fade</string>
 </resources>

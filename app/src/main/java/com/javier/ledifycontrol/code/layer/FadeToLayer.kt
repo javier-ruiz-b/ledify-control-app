@@ -9,9 +9,9 @@ class FadeToLayer(val layer: Layer, val interpolator : LedifyInterpolator, val s
     override fun toString() : String {
         val interpolatorInt = interpolator.value
         val previousCommand = layer.toString()
-        val layerIndex = layer.myIndex
+        val layerIndex = layer.index
         freeIndex(layerIndex)
-        return "$previousCommand+FADETO=$myIndex,$layerIndex,$interpolatorInt,$startMs,$durationMs"
+        return "$previousCommand+FADETO=$index,$layerIndex,$interpolatorInt,$startMs,$durationMs"
     }
 
     override fun getIcon() : Int {

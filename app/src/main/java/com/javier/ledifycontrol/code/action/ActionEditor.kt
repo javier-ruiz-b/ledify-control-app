@@ -41,6 +41,15 @@ class ActionEditor(filesDir: File, name: String) {
         return action.layers
     }
 
+    fun findLayerByIndex(index : Int) : Layer? {
+        for (layer in action.layers) {
+            if (layer.index == index) {
+                return layer
+            }
+        }
+        return null
+    }
+
     val command: String
         get() {
             return if (layers().isEmpty()) {
