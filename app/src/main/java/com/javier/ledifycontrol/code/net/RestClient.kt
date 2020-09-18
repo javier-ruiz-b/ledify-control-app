@@ -9,7 +9,7 @@ import okhttp3.*
 import java.io.IOException
 import java.util.*
 
-class RestClient(val baseUrl: String = "http://192.168.178.50:8033") {
+class RestClient(val baseUrl: String = "http://84.173.50.141:8033") {
     private val logger = KotlinLogging.logger {}
     private val client = OkHttpClient()
     private val commandQueue = PriorityQueue<String>()
