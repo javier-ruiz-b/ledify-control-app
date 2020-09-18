@@ -88,7 +88,8 @@ class ActionEditorActivity : AppCompatActivity() {
 
     private val mSendUpdateHandler = Handler()
     private val mSendUpdateRunnable = Runnable {
-        restClient.getRequest(actionEditor.command)
+//        restClient.getRequest(actionEditor.command)
+        restClient.fadeToLayer(actionEditor.layers().last(), 250)
     }
     fun updateStrip() {
         if (cbLiveUpdate.isChecked) {

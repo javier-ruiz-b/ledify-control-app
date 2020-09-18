@@ -2,6 +2,7 @@ package com.javier.ledifycontrol.code.net
 
 import com.javier.ledifycontrol.code.layer.ColorLayer
 import com.javier.ledifycontrol.code.layer.FadeToLayer
+import com.javier.ledifycontrol.code.layer.Layer
 import com.javier.ledifycontrol.code.model.LedifyInterpolator
 import com.javier.ledifycontrol.code.model.RgbwColor
 import mu.KotlinLogging
@@ -25,8 +26,12 @@ class RestClient(val baseUrl: String = "http://84.173.50.141:8033") {
     }
 
     fun setColor(color: RgbwColor) {
-        val layer = FadeToLayer(ColorLayer(color), LedifyInterpolator.Decelerate4x, 0, 500)
-        getRequest(layer.setLayerString())
+        fadeToLayer(ColorLayer(color), 500)
+    }
+
+    fun fadeToLayer(toLayer: Layer, durationMs: Int) {
+        val animationLayer = FadeToLayer(toLayer, LedifyInterpolator.Decelerate4x, 0, durationMs)
+        getRequest(animationLayer.setLayerString())
     }
 
     private fun performRequest(command: String)  {
