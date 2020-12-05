@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity() {
         buttonRandom.setOnClickListener {
             mRestClient.getRequest("RANDOM")
         }
+        //int layer, quint32 lightsToShow, int lightSize, int brightness, int fadeTime, int onTime
+        buttonChristmas.setOnClickListener {
+            mRestClient.getRequest("CHRISTMAS=0,8,4,20,2000,1000;SET=0")
+        }
 
         colorPicker.setOnColorChangedListener(object : OnColorChangedListener{
             override fun onColorChanged(color: RgbwColor) {
